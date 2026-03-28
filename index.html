@@ -33,10 +33,34 @@
           <a href="#contact" class="cta" data-i18n="navContact">Επικοινωνία</a>
         </nav>
 
+        <button
+          type="button"
+          class="mobile-menu-toggle"
+          id="mobile-menu-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Άνοιγμα μενού"
+          data-i18n-aria-label="mobileMenuAria">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
         <div class="language-switcher" aria-label="Επιλογή γλώσσας" data-i18n-aria-label="languageSwitcherAria">
           <button type="button" class="lang-btn active" data-lang="el">EL</button>
           <button type="button" class="lang-btn" data-lang="en">EN</button>
         </div>
+      </div>
+    </div>
+
+    <div class="container mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-panel">
+        <a href="#overview" class="mobile-nav-link" data-i18n="navCompany">Εταιρεία</a>
+        <a href="#about" class="mobile-nav-link" data-i18n="navAbout">Σχετικά</a>
+        <a href="#markets" class="mobile-nav-link" data-i18n="navMarkets">Αγορές</a>
+        <a href="#private-label" class="mobile-nav-link" data-i18n="navPrivateLabel">Private Label</a>
+        <a href="pricelist.pdf" target="_blank" rel="noopener noreferrer" class="mobile-nav-link mobile-nav-pricelist" data-i18n="navPricelist">Τιμοκατάλογος</a>
+        <a href="#contact" class="mobile-nav-link mobile-nav-cta" data-i18n="navContact">Επικοινωνία</a>
       </div>
     </div>
   </header>

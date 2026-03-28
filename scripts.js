@@ -6,6 +6,7 @@ const translations = {
     brandLogoAlt: "Stanfood logo",
     brandTagline: "Χονδρική επεξεργασία & συσκευασία τροφίμων",
     languageSwitcherAria: "Επιλογή γλώσσας",
+    mobileMenuAria: "Άνοιγμα μενού",
     navCompany: "Εταιρεία",
     navAbout: "Σχετικά",
     navMarkets: "Αγορές",
@@ -86,6 +87,7 @@ const translations = {
     brandLogoAlt: "Stanfood logo",
     brandTagline: "Wholesale food processing & packaging",
     languageSwitcherAria: "Language selector",
+    mobileMenuAria: "Open menu",
     navCompany: "Company",
     navAbout: "About",
     navMarkets: "Markets",
@@ -175,6 +177,8 @@ const acceptMapButton = document.getElementById("accept-map");
 const cookieSettingsButton = document.getElementById("cookie-settings");
 const mapConsent = document.getElementById("map-consent");
 const consentStorageKey = "stanfood-map-consent";
+const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+const mobileMenu = document.getElementById("mobile-menu");
 
 yearElement.textContent = new Date().getFullYear();
 
@@ -263,6 +267,33 @@ function requestHeroCopyScrollFollow() {
 updateHeroCopyScrollFollow();
 window.addEventListener("scroll", requestHeroCopyScrollFollow, { passive: true });
 window.addEventListener("resize", requestHeroCopyScrollFollow);
+
+function setMobileMenuState(isOpen) {
+  if (!mobileMenuToggle || !mobileMenu) {
+    return;
+  }
+
+  mobileMenu.classList.toggle("is-open", isOpen);
+  mobileMenuToggle.classList.toggle("is-open", isOpen);
+  mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
+}
+
+if (mobileMenuToggle) {
+  mobileMenuToggle.addEventListener("click", () => {
+    const isOpen = !mobileMenu.classList.contains("is-open");
+    setMobileMenuState(isOpen);
+  });
+}
+
+document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+  link.addEventListener("click", () => setMobileMenuState(false));
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 720) {
+    setMobileMenuState(false);
+  }
+});
 
 function createMapIframe() {
   if (!mapCard || mapCard.querySelector("iframe")) {
