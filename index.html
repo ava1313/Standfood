@@ -320,18 +320,24 @@
               </div>
             </div>
 
-            <div class="map-card">
-              <iframe
-                src="https://www.google.com/maps?q=%CE%A3%CF%86%CE%B1%CE%BA%CF%84%CE%B7%CF%81%CE%AF%CE%B1%CF%82%2086,%20%CE%A0%CE%B5%CE%B9%CF%81%CE%B1%CE%B9%CE%AC%CF%82,%2018546&z=16&output=embed"
-                width="100%"
-                height="100%"
-                style="border:0;"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                title="Χάρτης τοποθεσίας Stanfood"
-                data-i18n-title="mapTitle">
-              </iframe>
+            <div
+              class="map-card"
+              data-map-src="https://www.google.com/maps?q=%CE%A3%CF%86%CE%B1%CE%BA%CF%84%CE%B7%CF%81%CE%AF%CE%B1%CF%82%2086,%20%CE%A0%CE%B5%CE%B9%CF%81%CE%B1%CE%B9%CE%AC%CF%82,%2018546&z=16&output=embed">
+              <div class="map-consent" id="map-consent">
+                <strong data-i18n="mapConsentTitle">Φόρτωση χάρτη Google Maps</strong>
+                <p data-i18n="mapConsentText">
+                  Για να εμφανιστεί ο χάρτης, χρειάζεται να αποδεχθείτε εξωτερικό περιεχόμενο και πιθανά cookies από την Google.
+                </p>
+                <div class="map-consent-actions">
+                  <button type="button" class="btn btn-primary map-consent-btn" id="accept-map" data-i18n="mapConsentButton">Αποδοχή και προβολή χάρτη</button>
+                  <a
+                    href="https://www.google.com/maps?q=%CE%A3%CF%86%CE%B1%CE%BA%CF%84%CE%B7%CF%81%CE%AF%CE%B1%CF%82%2086,%20%CE%A0%CE%B5%CE%B9%CF%81%CE%B1%CE%B9%CE%AC%CF%82,%2018546"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-secondary"
+                    data-i18n="mapOpenExternal">Άνοιγμα στο Google Maps</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -342,9 +348,28 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div><span data-i18n="footerCopyright">©</span> <span id="year"></span> <span data-i18n="footerRights">Stanfood. All rights reserved.</span></div>
-      <div data-i18n="footerTagline">Χονδρική επεξεργασία, τυποποίηση & συσκευασία τροφίμων</div>
+      <div class="footer-meta">
+        <span data-i18n="footerTagline">Χονδρική επεξεργασία, τυποποίηση & συσκευασία τροφίμων</span>
+        <a href="privacy.html" data-i18n="footerPrivacy">Πολιτική Απορρήτου</a>
+        <a href="cookies.html" data-i18n="footerCookies">Πολιτική Cookies</a>
+        <button type="button" class="footer-settings-btn" id="cookie-settings" data-i18n="footerCookieSettings">Ρυθμίσεις Cookies</button>
+      </div>
     </div>
   </footer>
+
+  <div class="cookie-banner" id="cookie-banner" hidden>
+    <div class="cookie-banner-copy">
+      <strong data-i18n="cookieBannerTitle">Cookies & εξωτερικό περιεχόμενο</strong>
+      <p data-i18n="cookieBannerText">
+        Η ιστοσελίδα χρησιμοποιεί μόνο απαραίτητη αποθήκευση προτιμήσεων και, αν το επιλέξετε, φορτώνει Google Maps που μπορεί να ορίσει cookies τρίτων.
+      </p>
+    </div>
+    <div class="cookie-banner-actions">
+      <a href="cookies.html" class="cookie-banner-link" data-i18n="cookieBannerPolicy">Δείτε την πολιτική cookies</a>
+      <button type="button" class="btn btn-secondary cookie-banner-decline" id="decline-cookies" data-i18n="cookieBannerDecline">Συνέχεια χωρίς χάρτη</button>
+      <button type="button" class="btn btn-primary cookie-banner-accept" id="accept-cookies" data-i18n="cookieBannerAccept">Αποδοχή και φόρτωση χάρτη</button>
+    </div>
+  </div>
 
   <script src="scripts.js"></script>
 </body>

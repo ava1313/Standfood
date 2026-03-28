@@ -12,6 +12,18 @@ const translations = {
     navPrivateLabel: "Private Label",
     navPricelist: "Τιμοκατάλογος",
     navContact: "Επικοινωνία",
+    mapConsentTitle: "Φόρτωση χάρτη Google Maps",
+    mapConsentText: "Για να εμφανιστεί ο χάρτης, χρειάζεται να αποδεχθείτε εξωτερικό περιεχόμενο και πιθανά cookies από την Google.",
+    mapConsentButton: "Αποδοχή και προβολή χάρτη",
+    mapOpenExternal: "Άνοιγμα στο Google Maps",
+    footerPrivacy: "Πολιτική Απορρήτου",
+    footerCookies: "Πολιτική Cookies",
+    footerCookieSettings: "Ρυθμίσεις Cookies",
+    cookieBannerTitle: "Cookies & εξωτερικό περιεχόμενο",
+    cookieBannerText: "Η ιστοσελίδα χρησιμοποιεί μόνο απαραίτητη αποθήκευση προτιμήσεων και, αν το επιλέξετε, φορτώνει Google Maps που μπορεί να ορίσει cookies τρίτων.",
+    cookieBannerPolicy: "Δείτε την πολιτική cookies",
+    cookieBannerDecline: "Συνέχεια χωρίς χάρτη",
+    cookieBannerAccept: "Αποδοχή και φόρτωση χάρτη",
     heroEyebrow: "Αξιόπιστος συνεργάτης χονδρικής",
     heroSubtitle: "Επεξεργασία, τυποποίηση και συσκευασία τροφίμων για επαγγελματική χρήση",
     heroDesc: "Η Stanfood δραστηριοποιείται στον χώρο των εισαγωγών μπαχαρικών, των πρώτων υλών τροφίμων, της επεξεργασίας και της τυποποίησης, εξυπηρετώντας χονδρεμπόρους, HoReCa, βιομηχανίες και δημόσιο τομέα.",
@@ -80,6 +92,18 @@ const translations = {
     navPrivateLabel: "Private Label",
     navPricelist: "Price List",
     navContact: "Contact",
+    mapConsentTitle: "Load Google Maps",
+    mapConsentText: "To display the map, you need to accept external content and possible third-party cookies from Google.",
+    mapConsentButton: "Accept and show map",
+    mapOpenExternal: "Open in Google Maps",
+    footerPrivacy: "Privacy Policy",
+    footerCookies: "Cookie Policy",
+    footerCookieSettings: "Cookie Settings",
+    cookieBannerTitle: "Cookies & external content",
+    cookieBannerText: "This website uses only essential preference storage and, if you choose, loads Google Maps which may set third-party cookies.",
+    cookieBannerPolicy: "View cookie policy",
+    cookieBannerDecline: "Continue without map",
+    cookieBannerAccept: "Accept and load map",
     heroEyebrow: "Reliable wholesale partner",
     heroSubtitle: "Food processing, standardization and packaging for professional use",
     heroDesc: "Stanfood operates in spice imports, food raw materials, processing and standardization, serving wholesalers, HoReCa, industries and the public sector.",
@@ -143,6 +167,14 @@ const metaDescription = document.querySelector('meta[name="description"]');
 const langButtons = document.querySelectorAll(".lang-btn");
 const heroCopy = document.querySelector(".hero-copy");
 const heroCopyInner = document.querySelector(".hero-copy-inner");
+const cookieBanner = document.getElementById("cookie-banner");
+const mapCard = document.querySelector(".map-card");
+const acceptCookiesButton = document.getElementById("accept-cookies");
+const declineCookiesButton = document.getElementById("decline-cookies");
+const acceptMapButton = document.getElementById("accept-map");
+const cookieSettingsButton = document.getElementById("cookie-settings");
+const mapConsent = document.getElementById("map-consent");
+const consentStorageKey = "stanfood-map-consent";
 
 yearElement.textContent = new Date().getFullYear();
 
@@ -232,6 +264,76 @@ updateHeroCopyScrollFollow();
 window.addEventListener("scroll", requestHeroCopyScrollFollow, { passive: true });
 window.addEventListener("resize", requestHeroCopyScrollFollow);
 
+function createMapIframe() {
+  if (!mapCard || mapCard.querySelector("iframe")) {
+    return;
+  }
+
+  const currentLanguage = document.documentElement.lang in translations ? document.documentElement.lang : "el";
+  const iframe = document.createElement("iframe");
+  iframe.src = mapCard.dataset.mapSrc;
+  iframe.width = "100%";
+  iframe.height = "100%";
+  iframe.style.border = "0";
+  iframe.allowFullscreen = true;
+  iframe.loading = "lazy";
+  iframe.referrerPolicy = "no-referrer-when-downgrade";
+  iframe.title = translations[currentLanguage].mapTitle;
+  mapCard.appendChild(iframe);
+  mapCard.classList.add("has-map");
+}
+
+function updateConsentUI(state) {
+  if (!cookieBanner) {
+    return;
+  }
+
+  if (state === "accepted") {
+    cookieBanner.hidden = true;
+    createMapIframe();
+  } else if (state === "declined") {
+    cookieBanner.hidden = true;
+    if (mapCard) {
+      mapCard.classList.remove("has-map");
+      const iframe = mapCard.querySelector("iframe");
+      if (iframe) {
+        iframe.remove();
+      }
+    }
+  } else {
+    cookieBanner.hidden = false;
+  }
+}
+
+function setConsent(state) {
+  localStorage.setItem(consentStorageKey, state);
+  updateConsentUI(state);
+}
+
+const savedConsent = localStorage.getItem(consentStorageKey);
+updateConsentUI(savedConsent);
+
+if (acceptCookiesButton) {
+  acceptCookiesButton.addEventListener("click", () => setConsent("accepted"));
+}
+
+if (declineCookiesButton) {
+  declineCookiesButton.addEventListener("click", () => setConsent("declined"));
+}
+
+if (acceptMapButton) {
+  acceptMapButton.addEventListener("click", () => setConsent("accepted"));
+}
+
+if (cookieSettingsButton) {
+  cookieSettingsButton.addEventListener("click", () => {
+    if (cookieBanner) {
+      cookieBanner.hidden = false;
+      cookieBanner.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  });
+}
+
 function applyTranslations(language) {
   const dictionary = translations[language] || translations.el;
 
@@ -259,6 +361,13 @@ function applyTranslations(language) {
       element.title = dictionary[key];
     }
   });
+
+  if (mapCard) {
+    const iframe = mapCard.querySelector("iframe");
+    if (iframe) {
+      iframe.title = dictionary.mapTitle;
+    }
+  }
 
   document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
     const key = element.dataset.i18nAriaLabel;

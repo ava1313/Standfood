@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stanfood | Πολιτική Απορρήτου</title>
+  <meta name="description" content="Πολιτική Απορρήτου της Stanfood για επικοινωνία, στοιχεία πελατών και χρήση της ιστοσελίδας." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .policy-page{padding:56px 0 72px}
+    .policy-shell{display:grid;gap:24px}
+    .policy-header,.policy-card{
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(100,70,45,.10);
+      border-radius:26px;
+      box-shadow:0 18px 45px rgba(87,55,27,.10);
+      backdrop-filter:blur(14px);
+    }
+    .policy-header{padding:28px 30px;display:flex;justify-content:space-between;gap:18px;align-items:flex-start}
+    .policy-header h1{font-size:clamp(2rem,4vw,3.2rem);margin-bottom:10px}
+    .policy-header p,.policy-card p,.policy-card li{color:var(--muted);line-height:1.75}
+    .policy-card{padding:28px 30px}
+    .policy-card h2{font-size:1.5rem;margin-bottom:12px}
+    .policy-card ul{margin:0;padding-left:20px}
+    .policy-tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .policy-home{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:999px;background:rgba(255,255,255,.72);border:1px solid rgba(110,80,54,.12);font-weight:700}
+    @media (max-width:720px){
+      .policy-page{padding:28px 0 40px}
+      .policy-header,.policy-card{padding:22px}
+      .policy-header{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <main class="policy-page">
+    <div class="container policy-shell">
+      <section class="policy-header">
+        <div>
+          <div class="eyebrow"><span class="dot"></span><span data-i18n="eyebrow">Νομικές πληροφορίες ιστοσελίδας</span></div>
+          <h1 data-i18n="title">Πολιτική Απορρήτου</h1>
+          <p data-i18n="intro">Η σελίδα αυτή εξηγεί πώς η Stanfood διαχειρίζεται δεδομένα προσωπικού χαρακτήρα όταν επικοινωνείτε με την εταιρεία ή χρησιμοποιείτε την ιστοσελίδα της.</p>
+        </div>
+        <div class="policy-tools">
+          <a href="index.html" class="policy-home" data-i18n="back">Επιστροφή στην αρχική</a>
+          <div class="language-switcher" aria-label="Επιλογή γλώσσας">
+            <button type="button" class="lang-btn active" data-lang="el">EL</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="policy-card">
+        <h2 data-i18n="controllerTitle">1. Υπεύθυνος επεξεργασίας</h2>
+        <p data-i18n="controllerText">Υπεύθυνος για την επεξεργασία δεδομένων που συλλέγονται μέσω της ιστοσελίδας είναι η Stanfood, Σφακτηρίας 86, Πειραιάς, Τ.Κ. 18546, email: stfpaschalis@gmail.com, τηλέφωνο: 2104623760.</p>
+      </section>
+
+      <section class="policy-card">
+        <h2 data-i18n="dataTitle">2. Ποια δεδομένα μπορεί να επεξεργαστούμε</h2>
+        <ul>
+          <li data-i18n="data1">Στοιχεία επικοινωνίας που μας αποστέλλετε εθελοντικά μέσω email ή τηλεφώνου.</li>
+          <li data-i18n="data2">Στοιχεία που σχετίζονται με αιτήματα συνεργασίας, προσφορές ή επαγγελματική επικοινωνία.</li>
+          <li data-i18n="data3">Τεχνικές προτιμήσεις που αποθηκεύονται τοπικά στη συσκευή σας, όπως η γλώσσα της ιστοσελίδας και η επιλογή φόρτωσης του χάρτη.</li>
+        </ul>
+      </section>
+
+      <section class="policy-card">
+        <h2 data-i18n="purposeTitle">3. Σκοποί και νομικές βάσεις</h2>
+        <ul>
+          <li data-i18n="purpose1">Απάντηση σε αιτήματα επικοινωνίας και διαχείριση επαγγελμαικών συνεργασιών.</li>
+          <li data-i18n="purpose2">Εκπλήρωση έννομων υποχρεώσεων όταν απαιτείται από τη φορολογική ή εμπορική νομοθεσία.</li>
+          <li data-i18n="purpose3">Προβολή εξωτερικού περιεχομένου Google Maps μόνο κατόπιν συγκατάθεσης του επισκέπτη.</li>
+        </ul>
+      </section>
+
+      <section class="policy-card">
+        <h2 data-i18n="sharingTitle">4. Διαβίβαση σε τρίτους</h2>
+        <p data-i18n="sharingText">Η ιστοσελίδα δεν χρησιμοποιεί διαφημιστική στόχευση ή analytics. Αν επιλέξετε να φορτώσετε τον χάρτη, η Google μπορεί να λάβει τεχνικά δεδομένα και να εφαρμόσει δικές της τεχνολογίες cookies σύμφωνα με τη δική της πολιτική.</p>
+      </section>
+
+      <section class="policy-card">
+        <h2 data-i18n="rightsTitle">5. Δικαιώματα υποκειμένων</h2>
+        <p data-i18n="rightsText">Μπορείτε να ζητήσετε πρόσβαση, διόρθωση, διαγραφή, περιορισμό επεξεργασίας ή να ασκήσετε αντίρρηση, όπου αυτό προβλέπεται από τον GDPR. Για σχετικά αιτήματα μπορείτε να επικοινωνείτε στο stfpaschalis@gmail.com.</p>
+      </section>
+
+      <section class="policy-card">
+        <h2 data-i18n="retentionTitle">6. Χρόνος διατήρησης</h2>
+        <p data-i18n="retentionText">Τα στοιχεία επικοινωνίας διατηρούνται μόνο για όσο χρειάζεται για την εξυπηρέτηση του αιτήματος ή την επαγγελματική συνεργασία και για όσο απαιτείται από την ισχύουσα νομοθεσία.</p>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const translations = {
+      el: {
+        title: "Πολιτική Απορρήτου",
+        eyebrow: "Νομικές πληροφορίες ιστοσελίδας",
+        intro: "Η σελίδα αυτή εξηγεί πώς η Stanfood διαχειρίζεται δεδομένα προσωπικού χαρακτήρα όταν επικοινωνείτε με την εταιρεία ή χρησιμοποιείτε την ιστοσελίδα της.",
+        back: "Επιστροφή στην αρχική",
+        controllerTitle: "1. Υπεύθυνος επεξεργασίας",
+        controllerText: "Υπεύθυνος για την επεξεργασία δεδομένων που συλλέγονται μέσω της ιστοσελίδας είναι η Stanfood, Σφακτηρίας 86, Πειραιάς, Τ.Κ. 18546, email: stfpaschalis@gmail.com, τηλέφωνο: 2104623760.",
+        dataTitle: "2. Ποια δεδομένα μπορεί να επεξεργαστούμε",
+        data1: "Στοιχεία επικοινωνίας που μας αποστέλλετε εθελοντικά μέσω email ή τηλεφώνου.",
+        data2: "Στοιχεία που σχετίζονται με αιτήματα συνεργασίας, προσφορές ή επαγγελματική επικοινωνία.",
+        data3: "Τεχνικές προτιμήσεις που αποθηκεύονται τοπικά στη συσκευή σας, όπως η γλώσσα της ιστοσελίδας και η επιλογή φόρτωσης του χάρτη.",
+        purposeTitle: "3. Σκοποί και νομικές βάσεις",
+        purpose1: "Απάντηση σε αιτήματα επικοινωνίας και διαχείριση επαγγελμαικών συνεργασιών.",
+        purpose2: "Εκπλήρωση έννομων υποχρεώσεων όταν απαιτείται από τη φορολογική ή εμπορική νομοθεσία.",
+        purpose3: "Προβολή εξωτερικού περιεχομένου Google Maps μόνο κατόπιν συγκατάθεσης του επισκέπτη.",
+        sharingTitle: "4. Διαβίβαση σε τρίτους",
+        sharingText: "Η ιστοσελίδα δεν χρησιμοποιεί διαφημιστική στόχευση ή analytics. Αν επιλέξετε να φορτώσετε τον χάρτη, η Google μπορεί να λάβει τεχνικά δεδομένα και να εφαρμόσει δικές της τεχνολογίες cookies σύμφωνα με τη δική της πολιτική.",
+        rightsTitle: "5. Δικαιώματα υποκειμένων",
+        rightsText: "Μπορείτε να ζητήσετε πρόσβαση, διόρθωση, διαγραφή, περιορισμό επεξεργασίας ή να ασκήσετε αντίρρηση, όπου αυτό προβλέπεται από τον GDPR. Για σχετικά αιτήματα μπορείτε να επικοινωνείτε στο stfpaschalis@gmail.com.",
+        retentionTitle: "6. Χρόνος διατήρησης",
+        retentionText: "Τα στοιχεία επικοινωνίας διατηρούνται μόνο για όσο χρειάζεται για την εξυπηρέτηση του αιτήματος ή την επαγγελματική συνεργασία και για όσο απαιτείται από την ισχύουσα νομοθεσία."
+      },
+      en: {
+        title: "Privacy Policy",
+        eyebrow: "Website legal information",
+        intro: "This page explains how Stanfood handles personal data when you contact the company or use its website.",
+        back: "Back to homepage",
+        controllerTitle: "1. Data controller",
+        controllerText: "The controller for data collected through this website is Stanfood, 86 Sfaktirias Street, Piraeus 18546, email: stfpaschalis@gmail.com, phone: 2104623760.",
+        dataTitle: "2. What data we may process",
+        data1: "Contact details you voluntarily send to us by email or phone.",
+        data2: "Information related to partnership requests, quotations or professional communication.",
+        data3: "Technical preferences stored locally on your device, such as the website language and map loading choice.",
+        purposeTitle: "3. Purposes and legal bases",
+        purpose1: "Responding to contact requests and managing business relationships.",
+        purpose2: "Complying with legal obligations where required by tax or commercial law.",
+        purpose3: "Displaying external Google Maps content only after visitor consent.",
+        sharingTitle: "4. Sharing with third parties",
+        sharingText: "This website does not use advertising targeting or analytics. If you choose to load the map, Google may receive technical data and apply its own cookie technologies under its own policy.",
+        rightsTitle: "5. Data subject rights",
+        rightsText: "You may request access, rectification, erasure, restriction or object to processing where provided under GDPR. For such requests you can contact us at stfpaschalis@gmail.com.",
+        retentionTitle: "6. Retention period",
+        retentionText: "Contact data is kept only as long as needed to handle the request or business relationship and as required by applicable law."
+      }
+    };
+
+    const buttons = document.querySelectorAll(".lang-btn");
+    function applyLanguage(language) {
+      document.documentElement.lang = language;
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        element.textContent = translations[language][element.dataset.i18n];
+      });
+      buttons.forEach((button) => {
+        const active = button.dataset.lang === language;
+        button.classList.toggle("active", active);
+      });
+    }
+    const savedLanguage = localStorage.getItem("stanfood-language");
+    const initialLanguage = savedLanguage && translations[savedLanguage] ? savedLanguage : "el";
+    applyLanguage(initialLanguage);
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        localStorage.setItem("stanfood-language", button.dataset.lang);
+        applyLanguage(button.dataset.lang);
+      });
+    });
+  </script>
+</body>
+</html>
