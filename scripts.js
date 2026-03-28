@@ -10,6 +10,7 @@ const translations = {
     navAbout: "Σχετικά",
     navMarkets: "Αγορές",
     navPrivateLabel: "Private Label",
+    navPricelist: "Τιμοκατάλογος",
     navContact: "Επικοινωνία",
     heroEyebrow: "Αξιόπιστος συνεργάτης χονδρικής",
     heroSubtitle: "Επεξεργασία, τυποποίηση και συσκευασία τροφίμων για επαγγελματική χρήση",
@@ -77,6 +78,7 @@ const translations = {
     navAbout: "About",
     navMarkets: "Markets",
     navPrivateLabel: "Private Label",
+    navPricelist: "Price List",
     navContact: "Contact",
     heroEyebrow: "Reliable wholesale partner",
     heroSubtitle: "Food processing, standardization and packaging for professional use",
@@ -139,6 +141,8 @@ const yearElement = document.getElementById("year");
 const titleElement = document.querySelector("title");
 const metaDescription = document.querySelector('meta[name="description"]');
 const langButtons = document.querySelectorAll(".lang-btn");
+const heroCopy = document.querySelector(".hero-copy");
+const heroCopyInner = document.querySelector(".hero-copy-inner");
 
 yearElement.textContent = new Date().getFullYear();
 
@@ -156,6 +160,77 @@ applyStagger(".contact-lines .contact-item", 90);
 window.requestAnimationFrame(() => {
   document.body.classList.add("is-ready");
 });
+
+let heroCopyTicking = false;
+let heroCopyTargetShift = 0;
+let heroCopyCurrentShift = 0;
+let heroCopyAnimationFrame = null;
+
+function animateHeroCopyScrollFollow() {
+  heroCopyCurrentShift += (heroCopyTargetShift - heroCopyCurrentShift) * 0.12;
+
+  if (Math.abs(heroCopyTargetShift - heroCopyCurrentShift) < 0.2) {
+    heroCopyCurrentShift = heroCopyTargetShift;
+  }
+
+  heroCopy.style.setProperty("--hero-copy-shift", `${heroCopyCurrentShift}px`);
+
+  if (Math.abs(heroCopyTargetShift - heroCopyCurrentShift) >= 0.2) {
+    heroCopyAnimationFrame = window.requestAnimationFrame(animateHeroCopyScrollFollow);
+  } else {
+    heroCopyAnimationFrame = null;
+  }
+}
+
+function startHeroCopyAnimation() {
+  if (heroCopyAnimationFrame === null) {
+    heroCopyAnimationFrame = window.requestAnimationFrame(animateHeroCopyScrollFollow);
+  }
+}
+
+function updateHeroCopyScrollFollow() {
+  heroCopyTicking = false;
+
+  if (!heroCopy || !heroCopyInner) {
+    return;
+  }
+
+  if (window.innerWidth <= 1080) {
+    heroCopyTargetShift = 0;
+    startHeroCopyAnimation();
+    return;
+  }
+
+  const cardRect = heroCopy.getBoundingClientRect();
+  const innerHeight = heroCopyInner.offsetHeight;
+  const safeBottomGap = 34;
+  const availableSpace = Math.max(0, heroCopy.clientHeight - innerHeight - safeBottomGap);
+
+  if (availableSpace <= 0) {
+    heroCopyTargetShift = 0;
+    startHeroCopyAnimation();
+    return;
+  }
+
+  const triggerStart = 120;
+  const triggerEnd = -(cardRect.height - innerHeight - 120);
+  const progress = (triggerStart - cardRect.top) / (triggerStart - triggerEnd);
+  const clampedProgress = Math.max(0, Math.min(1, progress));
+  heroCopyTargetShift = availableSpace * clampedProgress;
+
+  startHeroCopyAnimation();
+}
+
+function requestHeroCopyScrollFollow() {
+  if (!heroCopyTicking) {
+    heroCopyTicking = true;
+    window.requestAnimationFrame(updateHeroCopyScrollFollow);
+  }
+}
+
+updateHeroCopyScrollFollow();
+window.addEventListener("scroll", requestHeroCopyScrollFollow, { passive: true });
+window.addEventListener("resize", requestHeroCopyScrollFollow);
 
 function applyTranslations(language) {
   const dictionary = translations[language] || translations.el;
@@ -229,7 +304,9 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
     if (target) {
       e.preventDefault();
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      const headerOffset = 76;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top: targetTop, behavior: "smooth" });
     }
   });
 });
