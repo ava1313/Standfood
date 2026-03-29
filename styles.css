@@ -1420,10 +1420,27 @@ body.is-ready .hero-visual .visual-bottom .visual-card:last-child{
   .hero-visual{
     padding:12px;
     border-radius:24px;
+    min-height:auto;
+    grid-template-rows:auto auto;
+    gap:12px;
   }
 
   .visual-bottom{
     grid-template-columns:1fr;
+  }
+
+  .hero-visual > .visual-card:first-child{
+    aspect-ratio:4 / 5;
+    min-height:0;
+  }
+
+  .visual-bottom .visual-card{
+    aspect-ratio:4 / 3;
+    min-height:0;
+  }
+
+  .visual-card img{
+    height:100%;
   }
 
   .overview-grid,
@@ -1444,9 +1461,20 @@ body.is-ready .hero-visual .visual-bottom .visual-card:last-child{
   }
 
   .floating-badge{
-    max-width:82%;
-    left:14px;
-    bottom:14px;
+    left:12px;
+    right:12px;
+    bottom:12px;
+    max-width:none;
+    padding:12px 14px;
+    border-radius:16px;
+  }
+
+  .floating-badge strong{
+    font-size:.98rem;
+  }
+
+  .floating-badge span{
+    font-size:.88rem;
   }
 
   .map-consent{
